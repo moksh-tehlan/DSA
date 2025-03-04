@@ -4,9 +4,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class MinStack {
-
-    Deque<Integer> stack;
-    long min;
+    private Deque<Long> stack;
+    private long min;
 
     public MinStack() {
         stack = new ArrayDeque<>();
@@ -14,27 +13,38 @@ public class MinStack {
     }
 
     public void push(int val) {
-        if(stack.isEmpty()){
-            min = val;
-            stack.push(val);
-        }else if(val > min){
-            stack.push(val);
-        }else{
-            stack.push((int)(2*val - min));
-            min = val;
+        long value = (long) val;
+
+        if (stack.isEmpty()) {
+            min = value;
+            stack.push(value);
+        } else if (value >= min) {
+            stack.push(value);
+        } else {
+            stack.push(2 * value - min);
+            min = value;
         }
     }
 
     public void pop() {
-        int popped = stack.pop();
+        if (stack.isEmpty()) return;
+
+        long popped = stack.pop();
+
         if (popped < min) {
             min = 2 * min - popped;
         }
     }
 
     public int top() {
-        int top = stack.peek();
-        return Math.max(top,(int) min);
+
+        long top = stack.peek();
+
+        if (top < min) {
+            return (int) min;
+        } else {
+            return (int) top;
+        }
     }
 
     public int getMin() {
