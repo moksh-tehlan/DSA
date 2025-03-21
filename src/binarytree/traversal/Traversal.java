@@ -1,4 +1,4 @@
-package binarytree;
+package binarytree.traversal;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

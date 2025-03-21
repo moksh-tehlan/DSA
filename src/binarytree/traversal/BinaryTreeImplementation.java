@@ -1,4 +1,4 @@
-package binarytree;
+package binarytree.traversal;
 
 public class BinaryTreeImplementation {
     public static void main(String[] args) {
